@@ -24,7 +24,7 @@ Heron.hauland.searchPanelConfig = {
           {
             xtype: "label",
             id: "helplabel",
-            html: 'Type in the name of locality',
+            html: 'Type in the name of Locality',
             style: {
               fontSize: '10px',
               color: '#AAAAAA'

@@ -119,7 +119,7 @@ Heron.options.map.layers = [
     'http://atlas.ihpan.edu.pl/geoserver/ows?', {
       layers: "gaul:mosaicked_v2",
       transparent: false,
-      format: 'image/png'  // szybszy niz jpeg???
+      format: 'image/png' // szybszy niz jpeg???
     }, {
       // maxResolution: 22,
       singleTile: false,
@@ -312,8 +312,8 @@ Ext.namespace("Heron.options.info");
 Heron.options.info.html =
   '<div class="hr-html-panel-body">' +
   '<p>About the project</p>' +
-  '<p>Old maps into the digital! A digital edition of "Gaul-Raczynski" topographic map</p>' +
-  '<p><i>IH PAN - Tomasz Panecki</i></p>' +
+  '<p>Old maps into the digital! A digital edition of "Gaul/Raczynski" topographic map</p>' +
+  '<p><i>Tomasz Panecki, Ph.D. - tpanecki@uw.edu.pl</i></p>' +
   '</div>';
 
 Ext.namespace("Heron");
@@ -324,121 +324,40 @@ var treeTheme = [{
     text: "Additional data",
     nodeType: 'hr_cascader',
     expanded: false,
-    children: [
-      {
-      nodeType: "gx_layer",
-      layer: "Localities - 21st c."
-    },
-    {
-      nodeType: "gx_layer",
-      layer: "Localities - 16th c."
-    }
-  ]
-  },
-  {
-    text: 'Digital edition',
-    nodeType: 'hr_cascader',
-    expanded: true,
     children: [{
-        text: 'Gaul-Raczynski map data',
-        nodeType: 'hr_cascader',
-        expanded: true,
-        children: [
-          {
-            nodeType: "gx_layer",
-            layer: "Localities"
-          },
-          {
-            nodeType: "gx_layer",
-            layer: "Roads"
-          },
-          {
-            nodeType: "gx_layer",
-            layer: "Forests"
-          },
-          {
-            nodeType: "gx_layer",
-            layer: "Sheets"
-          },
-          {
-            nodeType: "gx_layer",
-            layer: "Mosaicked Map"
-          }
-        ]
+        nodeType: "gx_layer",
+        layer: "Localities - 21st c."
       },
       {
-        text: 'Individual sheets data',
-        nodeType: 'hr_cascader',
-        expanded: false,
-        children: [{
-            text: "Babimost",
-            nodeType: 'hr_cascader',
-            expanded: false,
-            children: [{
-              nodeType: "gx_layer",
-              layer: "Babimost - pkt"
-            }]
-          },
-          {
-            text: "Kościan",
-            nodeType: 'hr_cascader',
-            expanded: false,
-            children: [
-            {
-              // nodeType: "gx_layer",
-              // layer: "Koscian - color"
-            }
-          ]
-          },
-          {
-            text: "Krobia",
-            nodeType: 'hr_cascader',
-            expanded: false,
-            children: [{
-              //TODO - add data
-            }]
-          },
-          {
-            text: "Międzyrzecz",
-            nodeType: 'hr_cascader',
-            expanded: false,
-            children: [{
-              //TODO - add data
-            }]
-          },
-          {
-            text: "Oborniki",
-            nodeType: 'hr_cascader',
-            expanded: false,
-            children: [{
-              //TODO - add data
-            }]
-          },
-          {
-            text: "Poznań",
-            nodeType: 'hr_cascader',
-            expanded: false,
-            children: [{
-              //TODO - add data
-            }]
-          },
-          {
-            text: "Śrem",
-            nodeType: 'hr_cascader',
-            expanded: false,
-            children: [{
-              //TODO - add data
-            }]
-          },
-          {
-            text: "Wschowa",
-            nodeType: 'hr_cascader',
-            expanded: false,
-            children: [{
-              //TODO - add data
-            }]
-          },
-        ]
+        nodeType: "gx_layer",
+        layer: "Localities - 16th c."
+      }
+    ]
+  },
+  {
+    text: 'Gaul/Raczynski map data',
+    nodeType: 'hr_cascader',
+    expanded: true,
+    children: [
+      {
+        nodeType: "gx_layer",
+        layer: "Localities"
+      },
+      {
+        nodeType: "gx_layer",
+        layer: "Roads"
+      },
+      {
+        nodeType: "gx_layer",
+        layer: "Forests"
+      },
+      {
+        nodeType: "gx_layer",
+        layer: "Sheets"
+      },
+      {
+        nodeType: "gx_layer",
+        layer: "Mosaicked Map"
       }
     ]
   },
@@ -490,15 +409,31 @@ Heron.layout = {
       collapsible: true,
       border: false,
       items: [{
-        xtype: 'hr_layertreepanel',
-        border: true,
-        layerIcons: 'bylayertype',
-        enableDD: false,
-        contextMenu: [{
-          xtype: 'hr_layernodemenuopacityslider'
-        }],
-        hropts: Heron.options.layertree
-      }]
+          xtype: 'hr_layertreepanel',
+          border: true,
+          layerIcons: 'bylayertype',
+          enableDD: false,
+          title: "Data",
+          contextMenu: [{
+              xtype: 'hr_layernodemenulayerinfo'
+            },
+            {
+              xtype: 'hr_layernodemenuzoomextent'
+            },
+            {
+              xtype: 'hr_layernodemenuopacityslider'
+            }
+          ],
+          hropts: Heron.options.layertree
+        },
+        {
+          xtype: 'hr_htmlpanel',
+          id: 'hr-info-west',
+          html: Heron.options.info.html,
+          preventBodyReset: true,
+          title: 'About the project'
+        }
+      ]
     },
     {
       xtype: 'panel',
