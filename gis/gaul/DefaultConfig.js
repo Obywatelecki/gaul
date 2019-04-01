@@ -461,7 +461,8 @@ Heron.options.info.html =
   '<div class="hr-html-panel-body">' +
   '<p>About the project</p>' +
   '<p>Old maps into the digital! A digital edition of "Gaul/Raczyński" topographic map</p>' +
-  '<p><i>Tomasz Panecki <a href="mailto:tpanecki@uw.edu.pl">tpanecki@uw.edu.pl</a></i></p>'
+  '<p><i>Tomasz Panecki <a href="mailto:tpanecki@uw.edu.pl">tpanecki@uw.edu.pl</a></i></p>' +
+  '<p><a href="https://github.com/Obywatelecki/gaul">GitHub repository</a></p>'
   '</div>';
 
 Ext.namespace("Heron");
