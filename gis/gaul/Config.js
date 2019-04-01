@@ -1,6 +1,6 @@
-Ext.namespace("Heron.hauland");
+Ext.namespace("Heron.gaul");
 
-Heron.hauland.searchPanelConfig = {
+Heron.gaul.searchPanelConfig = {
   xtype: 'hr_multisearchcenterpanel',
   height: 600,
   hropts: [{
@@ -12,7 +12,7 @@ Heron.hauland.searchPanelConfig = {
           version: "1.1.0",
           url: "http://atlas.ihpan.edu.pl/geoserver/ows?",
           srsName: "EPSG:2180",
-          featureType: "ADMS",
+          featureType: "miejscowosci",
           // featurePrefix: "gaul"
         }),
         items: [{
@@ -286,7 +286,7 @@ Heron.options.map.toolbar = [{
         width: 400,
         height: 300,
         items: [
-          Heron.hauland.searchPanelConfig
+          Heron.gaul.searchPanelConfig
         ]
       }
     }

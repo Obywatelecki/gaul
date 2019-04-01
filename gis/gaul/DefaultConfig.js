@@ -133,6 +133,24 @@ Heron.options.map.layers = [
   ),
 
   new OpenLayers.Layer.WMS(
+    "Mosaicked Map (colored)",
+    'http://atlas.ihpan.edu.pl/geoserver/ows?', {
+      layers: "gaul:mosaicked_color_v2",
+      transparent: false,
+      format: 'image/png' // szybszy niz jpeg???
+    }, {
+      // maxResolution: 22,
+      singleTile: false,
+      opacity: 0.7,
+      isBaseLayer: false,
+      visibility: false,
+      noLegend: true,
+      // featureInfoFormat: 'application/vnd.ogc.gml',
+      transitionEffect: 'resize'
+    }
+  ),
+
+  new OpenLayers.Layer.WMS(
     "Forests",
     'http://atlas.ihpan.edu.pl/geoserver/ows?', {
       layers: "gaul:lasy",
@@ -142,7 +160,7 @@ Heron.options.map.layers = [
       singleTile: true,
       opacity: 0.95,
       isBaseLayer: false,
-      visibility: true,
+      visibility: false,
       noLegend: false,
       featureInfoFormat: 'application/vnd.ogc.gml',
       transitionEffect: 'resize',
@@ -158,48 +176,16 @@ Heron.options.map.layers = [
   ),
 
   new OpenLayers.Layer.WMS(
-    "Sheets",
+    "Hydrography (lines)",
     'http://atlas.ihpan.edu.pl/geoserver/ows?', {
-      layers: "gaul:Sheets",
-      transparent: true,
-      format: 'image/jpeg'
-    }, {
-      singleTile: false,
-      isBaseLayer: false,
-      visibility: true,
-      noLegend: false,
-      featureInfoFormat: 'application/vnd.ogc.gml',
-      transitionEffect: 'resize'
-    }
-  ),
-
-  new OpenLayers.Layer.WMS(
-    "Roads",
-    'http://atlas.ihpan.edu.pl/geoserver/ows?', {
-      layers: "gaul:roads",
-      transparent: true,
-      format: 'image/jpeg'
-    }, {
-      singleTile: false,
-      isBaseLayer: false,
-      visibility: true,
-      noLegend: false,
-      // featureInfoFormat: 'application/vnd.ogc.gml',
-      transitionEffect: 'resize'
-    }
-  ),
-
-  new OpenLayers.Layer.WMS(
-    "Localities",
-    'http://atlas.ihpan.edu.pl/geoserver/ows?', {
-      layers: "gaul:ADMS",
+      layers: "gaul:hydro_line",
       transparent: true,
       format: 'image/png'
     }, {
       singleTile: true,
       opacity: 0.95,
       isBaseLayer: false,
-      visibility: true,
+      visibility: false,
       noLegend: false,
       featureInfoFormat: 'application/vnd.ogc.gml',
       transitionEffect: 'resize',
@@ -214,25 +200,187 @@ Heron.options.map.layers = [
     }
   ),
 
-  // Koscian
+  new OpenLayers.Layer.WMS(
+    "Hydrography (area)",
+    'http://atlas.ihpan.edu.pl/geoserver/ows?', {
+      layers: "gaul:hydro_area",
+      transparent: true,
+      format: 'image/png'
+    }, {
+      singleTile: true,
+      opacity: 1,
+      isBaseLayer: false,
+      visibility: false,
+      noLegend: false,
+      featureInfoFormat: 'application/vnd.ogc.gml',
+      transitionEffect: 'resize',
+      metadata: {
+        wfs: {
+          protocol: 'fromWMSLayer',
+          // featurePrefix: 'gaul',
+          // featureNS: 'http://www.ihpan.edu.pl',
+          // downloadFormats: Heron.options.wfs.downloadFormats
+        }
+      }
+    }
+  ),
 
-  // new OpenLayers.Layer.WMS(
-  //   "Koscian - color",
-  //   'http://atlas.ihpan.edu.pl/geoserver/ows?', {
-  //     layers: "gaul:Koscian_color",
-  //     transparent: false,
-  //     format: 'image/jpeg'
-  //   }, {
-  //     // maxResolution: 22,
-  //     singleTile: false,
-  //     opacity: 0.7,
-  //     isBaseLayer: false,
-  //     visibility: false,
-  //     noLegend: true,
-  //     // featureInfoFormat: 'application/vnd.ogc.gml',
-  //     transitionEffect: 'resize'
-  //   }
-  // ),
+  new OpenLayers.Layer.WMS(
+    "Swamps",
+    'http://atlas.ihpan.edu.pl/geoserver/ows?', {
+      layers: "gaul:bagna",
+      transparent: true,
+      format: 'image/png'
+    }, {
+      singleTile: true,
+      opacity: 0.95,
+      isBaseLayer: false,
+      visibility: false,
+      noLegend: false,
+      featureInfoFormat: 'application/vnd.ogc.gml',
+      transitionEffect: 'resize',
+      metadata: {
+        wfs: {
+          protocol: 'fromWMSLayer',
+          // featurePrefix: 'gaul',
+          // featureNS: 'http://www.ihpan.edu.pl',
+          // downloadFormats: Heron.options.wfs.downloadFormats
+        }
+      }
+    }
+  ),
+
+  new OpenLayers.Layer.WMS(
+    "Roads",
+    'http://atlas.ihpan.edu.pl/geoserver/ows?', {
+      layers: "gaul:drogi",
+      transparent: true,
+      format: 'image/jpeg'
+    }, {
+      singleTile: false,
+      isBaseLayer: false,
+      visibility: false,
+      noLegend: true,
+      // featureInfoFormat: 'application/vnd.ogc.gml',
+      transitionEffect: 'resize'
+    }
+  ),
+
+  new OpenLayers.Layer.WMS(
+    "Districts",
+    'http://atlas.ihpan.edu.pl/geoserver/ows?', {
+      layers: "gaul:powiaty",
+      transparent: true,
+      format: 'image/jpeg'
+    }, {
+      singleTile: false,
+      isBaseLayer: false,
+      visibility: true,
+      noLegend: false,
+      featureInfoFormat: 'application/vnd.ogc.gml',
+      transitionEffect: 'resize'
+    }
+  ),
+
+  new OpenLayers.Layer.WMS(
+    "Crossings",
+    'http://atlas.ihpan.edu.pl/geoserver/ows?', {
+      layers: "gaul:przeprawy",
+      transparent: true,
+      format: 'image/png'
+    }, {
+      singleTile: true,
+      opacity: 0.95,
+      isBaseLayer: false,
+      visibility: false,
+      noLegend: false,
+      featureInfoFormat: 'application/vnd.ogc.gml',
+      transitionEffect: 'resize',
+      metadata: {
+        wfs: {
+          protocol: 'fromWMSLayer',
+          // featurePrefix: 'gaul',
+          // featureNS: 'http://www.ihpan.edu.pl',
+          // downloadFormats: Heron.options.wfs.downloadFormats
+        }
+      }
+    }
+  ),
+
+  new OpenLayers.Layer.WMS(
+    "Buildings",
+    'http://atlas.ihpan.edu.pl/geoserver/ows?', {
+      layers: "gaul:budynki",
+      transparent: true,
+      format: 'image/png'
+    }, {
+      singleTile: true,
+      opacity: 0.95,
+      isBaseLayer: false,
+      visibility: false,
+      noLegend: false,
+      featureInfoFormat: 'application/vnd.ogc.gml',
+      transitionEffect: 'resize',
+      metadata: {
+        wfs: {
+          protocol: 'fromWMSLayer',
+          // featurePrefix: 'gaul',
+          // featureNS: 'http://www.ihpan.edu.pl',
+          // downloadFormats: Heron.options.wfs.downloadFormats
+        }
+      }
+    }
+  ),
+
+  new OpenLayers.Layer.WMS(
+    "Industrial and economic facilities",
+    'http://atlas.ihpan.edu.pl/geoserver/ows?', {
+      layers: "gaul:zaklady_gospodarcze",
+      transparent: true,
+      format: 'image/png'
+    }, {
+      singleTile: true,
+      opacity: 0.95,
+      isBaseLayer: false,
+      visibility: false,
+      noLegend: false,
+      featureInfoFormat: 'application/vnd.ogc.gml',
+      transitionEffect: 'resize',
+      metadata: {
+        wfs: {
+          protocol: 'fromWMSLayer',
+          // featurePrefix: 'gaul',
+          // featureNS: 'http://www.ihpan.edu.pl',
+          // downloadFormats: Heron.options.wfs.downloadFormats
+        }
+      }
+    }
+  ),
+
+  new OpenLayers.Layer.WMS(
+    "Localities",
+    'http://atlas.ihpan.edu.pl/geoserver/ows?', {
+      layers: "gaul:miejscowosci",
+      transparent: true,
+      format: 'image/png'
+    }, {
+      singleTile: true,
+      opacity: 0.95,
+      isBaseLayer: false,
+      visibility: false,
+      noLegend: false,
+      featureInfoFormat: 'application/vnd.ogc.gml',
+      transitionEffect: 'resize',
+      metadata: {
+        wfs: {
+          protocol: 'fromWMSLayer',
+          // featurePrefix: 'gaul',
+          // featureNS: 'http://www.ihpan.edu.pl',
+          // downloadFormats: Heron.options.wfs.downloadFormats
+        }
+      }
+    }
+  ),
 
   // aux data
 
@@ -312,8 +460,8 @@ Ext.namespace("Heron.options.info");
 Heron.options.info.html =
   '<div class="hr-html-panel-body">' +
   '<p>About the project</p>' +
-  '<p>Old maps into the digital! A digital edition of "Gaul/Raczynski" topographic map</p>' +
-  '<p><i>Tomasz Panecki, Ph.D. - tpanecki@uw.edu.pl</i></p>' +
+  '<p>Old maps into the digital! A digital edition of "Gaul/Raczyński" topographic map</p>' +
+  '<p><i>Tomasz Panecki <a href="mailto:tpanecki@uw.edu.pl">tpanecki@uw.edu.pl</a></i></p>'
   '</div>';
 
 Ext.namespace("Heron");
@@ -335,7 +483,7 @@ var treeTheme = [{
     ]
   },
   {
-    text: 'Gaul/Raczynski map data',
+    text: 'Gaul/Raczyński map data',
     nodeType: 'hr_cascader',
     expanded: true,
     children: [
@@ -345,7 +493,31 @@ var treeTheme = [{
       },
       {
         nodeType: "gx_layer",
+        layer: "Industrial and economic facilities"
+      },
+      {
+        nodeType: "gx_layer",
+        layer: "Buildings"
+      },
+      {
+        nodeType: "gx_layer",
+        layer: "Crossings"
+      },
+      {
+        nodeType: "gx_layer",
         layer: "Roads"
+      },
+      {
+        nodeType: "gx_layer",
+        layer: "Hydrography (area)"
+      },
+      {
+        nodeType: "gx_layer",
+        layer: "Hydrography (lines)"
+      },
+      {
+        nodeType: "gx_layer",
+        layer: "Swamps"
       },
       {
         nodeType: "gx_layer",
@@ -353,25 +525,30 @@ var treeTheme = [{
       },
       {
         nodeType: "gx_layer",
-        layer: "Sheets"
+        layer: "Districts"
       },
       {
         nodeType: "gx_layer",
         layer: "Mosaicked Map"
+      },
+      {
+        nodeType: "gx_layer",
+        layer: "Mosaicked Map (colored)"
       }
     ]
   },
   {
     text: 'BaseMaps',
     expanded: false,
-    children: [{
-        text: "Historical",
-        expanded: false,
-        children: [{
-          nodeType: "gx_layer",
-          layer: "Topographic map"
-        }]
-      },
+    children: [
+      // {
+      //   text: "Historical",
+      //   expanded: false,
+      //   children: [{
+      //     nodeType: "gx_layer",
+      //     layer: "Topographic map"
+      //   }]
+      // },
       {
         text: "Geoportal.gov.pl",
         expanded: false,
@@ -405,7 +582,7 @@ Heron.layout = {
       id: 'hr-menu-left-container',
       layout: 'accordion',
       region: "west",
-      width: 200,
+      width: 230,
       collapsible: true,
       border: false,
       items: [{
@@ -447,7 +624,7 @@ Heron.layout = {
       items: [{
         xtype: 'hr_mappanel',
         id: 'hr-map',
-        title: "<center>Old maps into digital! The digital edition of Gaul-Raczynski topographic map</center>",
+        title: "<center>Old maps into digital! The digital edition of Gaul/Raczyński topographic map</center>",
         region: 'center',
         collapsible: false,
         border: false,
