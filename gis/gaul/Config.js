@@ -17,7 +17,7 @@ Heron.gaul.searchPanelConfig = {
         }),
         items: [{
             xtype: "textfield",
-            name: "naz__like",
+            name: "name__like",
             value: '',
             fieldLabel: "  name"
           },
