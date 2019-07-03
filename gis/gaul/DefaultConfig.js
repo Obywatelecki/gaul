@@ -542,14 +542,6 @@ var treeTheme = [{
     text: 'BaseMaps',
     expanded: false,
     children: [
-      // {
-      //   text: "Historical",
-      //   expanded: false,
-      //   children: [{
-      //     nodeType: "gx_layer",
-      //     layer: "Topographic map"
-      //   }]
-      // },
       {
         text: "Geoportal.gov.pl",
         expanded: false,

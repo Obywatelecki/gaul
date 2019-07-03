@@ -183,50 +183,6 @@ Heron.options.map.toolbar = [{
                 width: 120,
                 dataIndex: "nazwa_16w"
               }]
-            },
-            {
-              featureType: 'AZP',
-              columns: [{
-                  header: "AZP Area ID",
-                  width: 120,
-                  dataIndex: "AZP_area"
-                },
-                {
-                  header: "Type of area",
-                  width: 120,
-                  dataIndex: "Function"
-                },
-                {
-                  header: "Chronology",
-                  width: 120,
-                  dataIndex: "chronology"
-                },
-                {
-                  header: "Amount of pottery",
-                  width: 120,
-                  dataIndex: "Pottery_pi"
-                },
-                {
-                  header: "Pottery density",
-                  width: 120,
-                  dataIndex: "Pottery_de"
-                },
-                {
-                  header: "Other findings 1",
-                  width: 120,
-                  dataIndex: "other_fidi"
-                },
-                {
-                  header: "Other findings 2",
-                  width: 120,
-                  dataIndex: "other_fi_1"
-                },
-                {
-                  header: "Additional information",
-                  width: 120,
-                  dataIndex: "varia"
-                }
-              ]
             }
           ]
         }
