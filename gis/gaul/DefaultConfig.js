@@ -60,12 +60,65 @@ Heron.options.wfs.downloadFormats = [{
 
 Heron.options.map.layers = [
 
+  //basemap historical data
+
+  new OpenLayers.Layer.WMS(
+    "Topographic map 1:100 000 (c.a. 1930)",
+    'http://wms.hgis.cartomatic.pl/topo/3857/wig100k', {
+      layers: "wig100k",
+      transparent: true,
+      format: 'image/jpeg'
+    }, {
+      maxResolution: 22,
+      singleTile: false,
+      isBaseLayer: false,
+      visibility: false,
+      noLegend: true,
+      featureInfoFormat: 'application/vnd.ogc.gml',
+      transitionEffect: 'resize'
+    }
+  ),
+
   // basemap data
 
   new OpenLayers.Layer.WMS(
     "Digital elevation model",
     'http://mapy.geoportal.gov.pl/wss/service/img/guest/CIEN/MapServer/WMSServer', {
       layers: "NMT_100,NMT_30,NMT_5",
+      transparent: true,
+      format: 'image/jpeg'
+    }, {
+      maxResolution: 22,
+      singleTile: false,
+      isBaseLayer: false,
+      visibility: false,
+      noLegend: true,
+      featureInfoFormat: 'application/vnd.ogc.gml',
+      transitionEffect: 'resize'
+    }
+  ),
+
+  new OpenLayers.Layer.WMS(
+    "National Register of Geographic Names",
+    'http://mapy.geoportal.gov.pl/wss/service/pub/guest/G2_PRNG_WMS/MapServer/WMSServer', {
+      layers: "Miasto,Wies,PozostaleMiejscowosci",
+      transparent: true,
+      format: 'image/jpeg'
+    }, {
+      maxResolution: 22,
+      singleTile: false,
+      isBaseLayer: false,
+      visibility: false,
+      noLegend: true,
+      featureInfoFormat: 'application/vnd.ogc.gml',
+      transitionEffect: 'resize'
+    }
+  ),
+
+  new OpenLayers.Layer.WMS(
+    "National Register of Borders",
+    'http://mapy.geoportal.gov.pl/wss/service/PZGIKINSP/guest/services/G2_PRGJT_WMS/MapServer/WMSServer', {
+      layers: "Granice_wojewodztw,Granice_powiatow,Granice_gmin",
       transparent: true,
       format: 'image/jpeg'
     }, {
@@ -543,7 +596,17 @@ var treeTheme = [{
     expanded: false,
     children: [
       {
-        text: "Geoportal.gov.pl",
+        //Doesn't work :(
+        text: "Historical maps",
+        expanded: false,
+        children: [{
+            nodeType: "gx_layer",
+            layer: "Topographic map 1:100 000 (c.a. 1930)"
+          }
+        ]
+      },
+      {
+        text: "Modern maps and data",
         expanded: false,
         children: [{
             nodeType: "gx_layer",
@@ -552,6 +615,14 @@ var treeTheme = [{
           {
             nodeType: "gx_layer",
             layer: "Satellite imaginary"
+          },
+          {
+            nodeType: "gx_layer",
+            layer: "National Register of Geographic Names"
+          },
+          {
+            nodeType: "gx_layer",
+            layer: "National Register of Borders"
           },
           {
             nodeType: "gx_layer",
