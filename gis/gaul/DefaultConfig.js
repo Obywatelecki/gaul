@@ -13,7 +13,7 @@ Heron.options.map.settings = {
   zoom: 1,
   xy_precision: 3,
   max_features: 10,
-  tileSize: new OpenLayers.Size(512, 512),
+  tileSize: new OpenLayers.Size(256, 256),
   theme: null,
   permalinks: {
     paramPrefix: 'map',
@@ -58,24 +58,30 @@ Heron.options.wfs.downloadFormats = [{
 
 // edition data
 
+OpenLayers.Projection.defaults['EPSG:2180'] = {yx: false};
+
 Heron.options.map.layers = [
 
   //basemap historical data
 
   new OpenLayers.Layer.WMS(
     "Topographic map 1:100 000 (c.a. 1930)",
-    'http://wms.hgis.cartomatic.pl/topo/3857/wig100k', {
+    "http://wms.hgis.cartomatic.pl/topo/2180/wig100k", {
       layers: "wig100k",
       transparent: true,
-      format: 'image/jpeg'
+      VERSION: '1.3.0'
+      // format: 'image/jpeg'
     }, {
-      maxResolution: 22,
+      opacity: 0.9,
       singleTile: false,
-      isBaseLayer: false,
-      visibility: false,
-      noLegend: true,
-      featureInfoFormat: 'application/vnd.ogc.gml',
-      transitionEffect: 'resize'
+      visibility: true
+      // maxResolution: 22,
+      // singleTile: false,
+      // isBaseLayer: false,
+      // visibility: false,
+      // noLegend: true,
+      // featureInfoFormat: 'application/vnd.ogc.gml',
+      // transitionEffect: 'resize'
     }
   ),
 
