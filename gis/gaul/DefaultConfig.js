@@ -74,11 +74,11 @@ Heron.options.map.layers = [
     }, {
       opacity: 0.9,
       singleTile: false,
-      visibility: true
+      visibility: true,
       // maxResolution: 22,
       // singleTile: false,
-      // isBaseLayer: false,
-      // visibility: false,
+      isBaseLayer: false,
+      visibility: false,
       // noLegend: true,
       // featureInfoFormat: 'application/vnd.ogc.gml',
       // transitionEffect: 'resize'
