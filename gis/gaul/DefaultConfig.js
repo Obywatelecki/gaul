@@ -58,7 +58,7 @@ Heron.options.wfs.downloadFormats = [{
 
 // edition data
 
-OpenLayers.Projection.defaults['EPSG:2180'] = {yx: false};
+OpenLayers.Projection.defaults['EPSG:2180'] = {yx: true};
 
 Heron.options.map.layers = [
 
@@ -156,7 +156,7 @@ Heron.options.map.layers = [
   ),
 
   new OpenLayers.Layer.WMS(
-    "Satellite imaginary",
+    "Satellite imagery",
     'http://mapy.geoportal.gov.pl/wss/service/img/guest/ORTO/MapServer/WMSServer', {
       layers: "Raster",
       transparent: true,
@@ -174,7 +174,7 @@ Heron.options.map.layers = [
 
 
   new OpenLayers.Layer.WMS(
-    "Mosaicked Map",
+    "Mosaicked map",
     'http://atlas.ihpan.edu.pl/geoserver/ows?', {
       layers: "gaul:mosaicked_v2",
       transparent: false,
@@ -192,7 +192,7 @@ Heron.options.map.layers = [
   ),
 
   new OpenLayers.Layer.WMS(
-    "Mosaicked Map (colored)",
+    "Mosaicked map (colored)",
     'http://atlas.ihpan.edu.pl/geoserver/ows?', {
       layers: "gaul:mosaicked_color_v2",
       transparent: false,
@@ -340,34 +340,8 @@ Heron.options.map.layers = [
       transitionEffect: 'resize'
     }
   ),
-
   new OpenLayers.Layer.WMS(
-    "Crossings",
-    'http://atlas.ihpan.edu.pl/geoserver/ows?', {
-      layers: "gaul:przeprawy",
-      transparent: true,
-      format: 'image/png'
-    }, {
-      singleTile: true,
-      opacity: 0.95,
-      isBaseLayer: false,
-      visibility: false,
-      noLegend: false,
-      featureInfoFormat: 'application/vnd.ogc.gml',
-      transitionEffect: 'resize',
-      metadata: {
-        wfs: {
-          protocol: 'fromWMSLayer',
-          // featurePrefix: 'gaul',
-          // featureNS: 'http://www.ihpan.edu.pl',
-          // downloadFormats: Heron.options.wfs.downloadFormats
-        }
-      }
-    }
-  ),
-
-  new OpenLayers.Layer.WMS(
-    "Buildings",
+    "Buildings and constructions",
     'http://atlas.ihpan.edu.pl/geoserver/ows?', {
       layers: "gaul:budynki",
       transparent: true,
@@ -417,7 +391,7 @@ Heron.options.map.layers = [
   ),
 
   new OpenLayers.Layer.WMS(
-    "Localities",
+    "Settlements",
     'http://atlas.ihpan.edu.pl/geoserver/ows?', {
       layers: "gaul:miejscowosci",
       transparent: true,
@@ -444,7 +418,7 @@ Heron.options.map.layers = [
   // aux data
 
   new OpenLayers.Layer.WMS(
-    "Localities - 16th c.",
+    "Settlements - 16th c. (HAP)",
     'http://atlas.ihpan.edu.pl/geoserver/ows?', {
       layers: "ihpan:pkt_zbiorcza_pri",
       transparent: true,
@@ -467,33 +441,6 @@ Heron.options.map.layers = [
       }
     }
   ),
-
-  new OpenLayers.Layer.WMS(
-    "Localities - 21st c.",
-    'http://atlas.ihpan.edu.pl/geoserver/ows?', {
-      layers: "ontohgis:miejscowosci_codgik",
-      transparent: true,
-      format: 'image/png'
-    }, {
-      singleTile: true,
-      opacity: 0.95,
-      isBaseLayer: false,
-      visibility: false,
-      noLegend: false,
-      featureInfoFormat: 'application/vnd.ogc.gml',
-      transitionEffect: 'resize',
-      metadata: {
-        wfs: {
-          protocol: 'fromWMSLayer',
-          // featurePrefix: 'ihpan',
-          // featureNS: 'http://www.ihpan.edu.pl',
-          // downloadFormats: Heron.options.wfs.downloadFormats
-        }
-      }
-    }
-  ),
-
-  // z tym jest problem. Nie mogę wyrzucić tej warstwy.
 
   new OpenLayers.Layer.WMS(
     "bbox",
@@ -520,8 +467,10 @@ Heron.options.info.html =
   '<div class="hr-html-panel-body">' +
   '<p>About the project</p>' +
   '<p>Old maps into the digital! A digital edition of "Gaul/Raczyński" topographic map</p>' +
-  '<p><i>Tomasz Panecki <a href="mailto:tpanecki@uw.edu.pl">tpanecki@uw.edu.pl</a></i></p>' +
-  '<p><a href="https://github.com/Obywatelecki/gaul">GitHub repository</a></p>'
+  '<p><i>author: Tomasz Panecki <a href="mailto:tpanecki@uw.edu.pl">tpanecki@uw.edu.pl</a></i></p>' +
+  '<p><a href="https://github.com/Obywatelecki/gaul">GitHub repository</a></p>' +
+  '<p><a href="http://atlasfontium.pl/index.php?article=gaul">Zobacz główną stronę projektu</a></p>' +
+  '<p><a href="http://atlasfontium.pl/index.php?article=gaul&language=en">See project webpage</a></p>' +
   '</div>';
 
 Ext.namespace("Heron");
@@ -532,13 +481,10 @@ var treeTheme = [{
     text: "Additional data",
     nodeType: 'hr_cascader',
     expanded: false,
-    children: [{
-        nodeType: "gx_layer",
-        layer: "Localities - 21st c."
-      },
+    children: [
       {
         nodeType: "gx_layer",
-        layer: "Localities - 16th c."
+        layer: "Settlements - 16th c. (HAP)"
       }
     ]
   },
@@ -549,7 +495,7 @@ var treeTheme = [{
     children: [
       {
         nodeType: "gx_layer",
-        layer: "Localities"
+        layer: "Settlements"
       },
       {
         nodeType: "gx_layer",
@@ -557,11 +503,7 @@ var treeTheme = [{
       },
       {
         nodeType: "gx_layer",
-        layer: "Buildings"
-      },
-      {
-        nodeType: "gx_layer",
-        layer: "Crossings"
+        layer: "Buildings and constructions"
       },
       {
         nodeType: "gx_layer",
@@ -586,14 +528,6 @@ var treeTheme = [{
       {
         nodeType: "gx_layer",
         layer: "Districts"
-      },
-      {
-        nodeType: "gx_layer",
-        layer: "Mosaicked Map"
-      },
-      {
-        nodeType: "gx_layer",
-        layer: "Mosaicked Map (colored)"
       }
     ]
   },
@@ -602,7 +536,19 @@ var treeTheme = [{
     expanded: false,
     children: [
       {
-        //Doesn't work :(
+        text: "Gaul/Raczyński map",
+        expanded: false,
+        children: [{
+            nodeType: "gx_layer",
+            layer: "Mosaicked map"
+          },
+          {
+            nodeType: "gx_layer",
+            layer: "Mosaicked map (colored)"
+          }
+        ]
+      },
+      {
         text: "Historical maps",
         expanded: false,
         children: [{
@@ -620,7 +566,7 @@ var treeTheme = [{
           },
           {
             nodeType: "gx_layer",
-            layer: "Satellite imaginary"
+            layer: "Satellite imagery"
           },
           {
             nodeType: "gx_layer",
