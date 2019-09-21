@@ -72,7 +72,7 @@ Heron.options.map.layers = [
       VERSION: '1.3.0'
       // format: 'image/jpeg'
     }, {
-      opacity: 0.9,
+      opacity: 0.7,
       singleTile: false,
       visibility: true,
       // maxResolution: 22,
@@ -176,7 +176,7 @@ Heron.options.map.layers = [
   new OpenLayers.Layer.WMS(
     "Mosaicked map",
     'http://atlas.ihpan.edu.pl/geoserver/ows?', {
-      layers: "gaul:mosaicked_v2",
+      layers: "gaul:mosaicked_v3",
       transparent: false,
       format: 'image/png' // szybszy niz jpeg???
     }, {
@@ -343,7 +343,32 @@ Heron.options.map.layers = [
   new OpenLayers.Layer.WMS(
     "Buildings and constructions",
     'http://atlas.ihpan.edu.pl/geoserver/ows?', {
-      layers: "gaul:budynki",
+      layers: "gaul:Buildings",
+      transparent: true,
+      format: 'image/png'
+    }, {
+      singleTile: true,
+      opacity: 0.95,
+      isBaseLayer: false,
+      visibility: false,
+      noLegend: false,
+      featureInfoFormat: 'application/vnd.ogc.gml',
+      transitionEffect: 'resize',
+      metadata: {
+        wfs: {
+          protocol: 'fromWMSLayer',
+          // featurePrefix: 'gaul',
+          // featureNS: 'http://www.ihpan.edu.pl',
+          // downloadFormats: Heron.options.wfs.downloadFormats
+        }
+      }
+    }
+  ),
+
+  new OpenLayers.Layer.WMS(
+    "Natural landscape names",
+    'http://atlas.ihpan.edu.pl/geoserver/ows?', {
+      layers: "gaul:Natural_landscape",
       transparent: true,
       format: 'image/png'
     }, {
@@ -368,7 +393,7 @@ Heron.options.map.layers = [
   new OpenLayers.Layer.WMS(
     "Industrial and economic facilities",
     'http://atlas.ihpan.edu.pl/geoserver/ows?', {
-      layers: "gaul:zaklady_gospodarcze",
+      layers: "gaul:Industrial",
       transparent: true,
       format: 'image/png'
     }, {
@@ -393,7 +418,7 @@ Heron.options.map.layers = [
   new OpenLayers.Layer.WMS(
     "Settlements",
     'http://atlas.ihpan.edu.pl/geoserver/ows?', {
-      layers: "gaul:miejscowosci",
+      layers: "gaul:Settlements",
       transparent: true,
       format: 'image/png'
     }, {
@@ -504,6 +529,10 @@ var treeTheme = [{
       {
         nodeType: "gx_layer",
         layer: "Buildings and constructions"
+      },
+      {
+        nodeType: "gx_layer",
+        layer: "Natural landscape names"
       },
       {
         nodeType: "gx_layer",

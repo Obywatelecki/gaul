@@ -24,7 +24,7 @@ Heron.gaul.searchPanelConfig = {
           {
             xtype: "label",
             id: "helplabel",
-            html: 'Type in the name of Locality',
+            html: 'Type in the name of Settlement',
             style: {
               fontSize: '10px',
               color: '#AAAAAA'
@@ -142,8 +142,8 @@ Heron.options.map.toolbar = [{
     type: "featureinfo",
     options: {
       popupWindow: {
-        width: 600,
-        height: 200,
+        width: 1200,
+        height: 400,
         featureInfoPanel: {
           displayPanels: ['Table'],
           // Export to download file. Option values are 'CSV', 'XLS', default is no export (results in no export menu).
@@ -151,40 +151,6 @@ Heron.options.map.toolbar = [{
           // Export to download file. Option values are 'CSV', 'XLS', default is no export (results in no export menu).
           // exportFormats: ['CSV', 'XLS'],
           maxFeatures: 10,
-          gridColumns: [{
-              featureType: 'Localities',
-              columns: [{
-                  header: "source name",
-                  width: 100,
-                  dataIndex: "naz"
-                },
-                {
-                  header: "modern name",
-                  width: 100,
-                  dataIndex: "naz_glowna"
-                },
-                {
-                  header: "type",
-                  width: 100,
-                  dataIndex: "nazwa_h"
-                },
-                {
-                  header: "source",
-                  width: 120,
-                  dataIndex: "SOURCE"
-                }
-
-              ]
-            },
-            {
-              featureType: 'HAP_settle_16c',
-              columns: [{
-                header: "16th century name",
-                width: 120,
-                dataIndex: "nazwa_16w"
-              }]
-            }
-          ]
         }
       }
     }
