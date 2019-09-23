@@ -65,7 +65,28 @@ Heron.options.map.layers = [
   //basemap historical data
 
   new OpenLayers.Layer.WMS(
-    "Topographic map 1:100 000 (c.a. 1930)",
+    "German (c.a. 1890)",
+    "http://wms.hgis.cartomatic.pl/topo/2180/kdr", {
+      layers: "kdr",
+      transparent: true,
+      VERSION: '1.3.0'
+      // format: 'image/jpeg'
+    }, {
+      opacity: 0.7,
+      singleTile: false,
+      visibility: true,
+      // maxResolution: 22,
+      // singleTile: false,
+      isBaseLayer: false,
+      visibility: false,
+      // noLegend: true,
+      // featureInfoFormat: 'application/vnd.ogc.gml',
+      // transitionEffect: 'resize'
+    }
+  ),
+
+  new OpenLayers.Layer.WMS(
+    "Polish (c.a. 1930)",
     "http://wms.hgis.cartomatic.pl/topo/2180/wig100k", {
       layers: "wig100k",
       transparent: true,
@@ -212,7 +233,7 @@ Heron.options.map.layers = [
   new OpenLayers.Layer.WMS(
     "Forests",
     'http://atlas.ihpan.edu.pl/geoserver/ows?', {
-      layers: "gaul:lasy",
+      layers: "gaul:Forests",
       transparent: true,
       format: 'image/png'
     }, {
@@ -237,7 +258,7 @@ Heron.options.map.layers = [
   new OpenLayers.Layer.WMS(
     "Hydrography (lines)",
     'http://atlas.ihpan.edu.pl/geoserver/ows?', {
-      layers: "gaul:hydro_line",
+      layers: "gaul:Hydro_line",
       transparent: true,
       format: 'image/png'
     }, {
@@ -262,7 +283,7 @@ Heron.options.map.layers = [
   new OpenLayers.Layer.WMS(
     "Hydrography (area)",
     'http://atlas.ihpan.edu.pl/geoserver/ows?', {
-      layers: "gaul:hydro_area",
+      layers: "gaul:Hydro_polygon",
       transparent: true,
       format: 'image/png'
     }, {
@@ -287,7 +308,7 @@ Heron.options.map.layers = [
   new OpenLayers.Layer.WMS(
     "Swamps",
     'http://atlas.ihpan.edu.pl/geoserver/ows?', {
-      layers: "gaul:bagna",
+      layers: "gaul:Swamps",
       transparent: true,
       format: 'image/png'
     }, {
@@ -312,7 +333,7 @@ Heron.options.map.layers = [
   new OpenLayers.Layer.WMS(
     "Roads",
     'http://atlas.ihpan.edu.pl/geoserver/ows?', {
-      layers: "gaul:drogi",
+      layers: "gaul:Roads",
       transparent: true,
       format: 'image/jpeg'
     }, {
@@ -580,9 +601,18 @@ var treeTheme = [{
       {
         text: "Historical maps",
         expanded: false,
-        children: [{
+        children: [
+          {
+          nodeType: "gx_layer",
+          layer: "Prussian (c.a. 1800)"
+          },
+          {
+          nodeType: "gx_layer",
+          layer: "German (c.a. 1890)"
+          },
+          {
             nodeType: "gx_layer",
-            layer: "Topographic map 1:100 000 (c.a. 1930)"
+            layer: "Polish (c.a. 1930)"
           }
         ]
       },
