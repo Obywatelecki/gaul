@@ -65,7 +65,25 @@ Heron.options.map.layers = [
   //basemap historical data
 
   new OpenLayers.Layer.WMS(
-    "German (c.a. 1890)",
+    "Mapa pruska (ok. 1800)",
+    'http://atlas.ihpan.edu.pl/geoserver/ows?', {
+      layers: "gaul:Gilly_150k_1803",
+      transparent: false,
+      format: 'image/png' // szybszy niz jpeg???
+    }, {
+      // maxResolution: 22,
+      singleTile: false,
+      opacity: 0.7,
+      isBaseLayer: false,
+      visibility: false,
+      noLegend: true,
+      // featureInfoFormat: 'application/vnd.ogc.gml',
+      transitionEffect: 'resize'
+    }
+  ),
+
+  new OpenLayers.Layer.WMS(
+    "Mapa niemiecka (ok. 1890)",
     "http://wms.hgis.cartomatic.pl/topo/2180/kdr", {
       layers: "kdr",
       transparent: true,
@@ -86,7 +104,7 @@ Heron.options.map.layers = [
   ),
 
   new OpenLayers.Layer.WMS(
-    "Polish (c.a. 1930)",
+    "Mapa polska (ok. 1930)",
     "http://wms.hgis.cartomatic.pl/topo/2180/wig100k", {
       layers: "wig100k",
       transparent: true,
@@ -109,7 +127,7 @@ Heron.options.map.layers = [
   // basemap data
 
   new OpenLayers.Layer.WMS(
-    "Digital elevation model",
+    "Numeryczny Model Terenu",
     'http://mapy.geoportal.gov.pl/wss/service/img/guest/CIEN/MapServer/WMSServer', {
       layers: "NMT_100,NMT_30,NMT_5",
       transparent: true,
@@ -126,7 +144,7 @@ Heron.options.map.layers = [
   ),
 
   new OpenLayers.Layer.WMS(
-    "National Register of Geographic Names",
+    "Państwowy Rejestr Nazw Geograficznych",
     'http://mapy.geoportal.gov.pl/wss/service/pub/guest/G2_PRNG_WMS/MapServer/WMSServer', {
       layers: "Miasto,Wies,PozostaleMiejscowosci",
       transparent: true,
@@ -143,7 +161,7 @@ Heron.options.map.layers = [
   ),
 
   new OpenLayers.Layer.WMS(
-    "National Register of Borders",
+    "Państwowy Rejestr Granic",
     'http://mapy.geoportal.gov.pl/wss/service/PZGIKINSP/guest/services/G2_PRGJT_WMS/MapServer/WMSServer', {
       layers: "Granice_wojewodztw,Granice_powiatow,Granice_gmin",
       transparent: true,
@@ -160,7 +178,7 @@ Heron.options.map.layers = [
   ),
 
   new OpenLayers.Layer.WMS(
-    "Topographic map",
+    "Mapa topograficzna",
     'http://mapy.geoportal.gov.pl/wss/service/img/guest/TOPO/MapServer/WMSServer', {
       layers: "Raster",
       transparent: true,
@@ -177,7 +195,7 @@ Heron.options.map.layers = [
   ),
 
   new OpenLayers.Layer.WMS(
-    "Satellite imagery",
+    "Ortofotomapa",
     'http://mapy.geoportal.gov.pl/wss/service/img/guest/ORTO/MapServer/WMSServer', {
       layers: "Raster",
       transparent: true,
@@ -195,7 +213,7 @@ Heron.options.map.layers = [
 
 
   new OpenLayers.Layer.WMS(
-    "Mosaicked map",
+    "Mapa połączona",
     'http://atlas.ihpan.edu.pl/geoserver/ows?', {
       layers: "gaul:mosaicked_v3",
       transparent: false,
@@ -213,7 +231,7 @@ Heron.options.map.layers = [
   ),
 
   new OpenLayers.Layer.WMS(
-    "Mosaicked map (colored)",
+    "Mapa połączona (kolorowa)",
     'http://atlas.ihpan.edu.pl/geoserver/ows?', {
       layers: "gaul:mosaicked_color_v2",
       transparent: false,
@@ -231,7 +249,7 @@ Heron.options.map.layers = [
   ),
 
   new OpenLayers.Layer.WMS(
-    "Forests",
+    "Lasy",
     'http://atlas.ihpan.edu.pl/geoserver/ows?', {
       layers: "gaul:Forests",
       transparent: true,
@@ -256,7 +274,7 @@ Heron.options.map.layers = [
   ),
 
   new OpenLayers.Layer.WMS(
-    "Hydrography (lines)",
+    "Rzeki",
     'http://atlas.ihpan.edu.pl/geoserver/ows?', {
       layers: "gaul:Hydro_line",
       transparent: true,
@@ -281,7 +299,7 @@ Heron.options.map.layers = [
   ),
 
   new OpenLayers.Layer.WMS(
-    "Hydrography (area)",
+    "Akweny",
     'http://atlas.ihpan.edu.pl/geoserver/ows?', {
       layers: "gaul:Hydro_polygon",
       transparent: true,
@@ -306,7 +324,7 @@ Heron.options.map.layers = [
   ),
 
   new OpenLayers.Layer.WMS(
-    "Swamps",
+    "Bagna",
     'http://atlas.ihpan.edu.pl/geoserver/ows?', {
       layers: "gaul:Swamps",
       transparent: true,
@@ -331,7 +349,7 @@ Heron.options.map.layers = [
   ),
 
   new OpenLayers.Layer.WMS(
-    "Roads",
+    "Drogi",
     'http://atlas.ihpan.edu.pl/geoserver/ows?', {
       layers: "gaul:Roads",
       transparent: true,
@@ -347,9 +365,9 @@ Heron.options.map.layers = [
   ),
 
   new OpenLayers.Layer.WMS(
-    "Districts",
+    "Powiaty",
     'http://atlas.ihpan.edu.pl/geoserver/ows?', {
-      layers: "gaul:powiaty",
+      layers: "gaul:Districts",
       transparent: true,
       format: 'image/jpeg'
     }, {
@@ -362,9 +380,9 @@ Heron.options.map.layers = [
     }
   ),
   new OpenLayers.Layer.WMS(
-    "Buildings and constructions",
+    "Budynki i konstrukcje",
     'http://atlas.ihpan.edu.pl/geoserver/ows?', {
-      layers: "gaul:Buildings",
+      layers: "gaul:Buildings_pl",
       transparent: true,
       format: 'image/png'
     }, {
@@ -387,7 +405,7 @@ Heron.options.map.layers = [
   ),
 
   new OpenLayers.Layer.WMS(
-    "Natural landscape names",
+    "Nazwy fizjograficzne",
     'http://atlas.ihpan.edu.pl/geoserver/ows?', {
       layers: "gaul:Natural_landscape",
       transparent: true,
@@ -412,9 +430,9 @@ Heron.options.map.layers = [
   ),
 
   new OpenLayers.Layer.WMS(
-    "Industrial and economic facilities",
+    "Zakłady przemysłowe",
     'http://atlas.ihpan.edu.pl/geoserver/ows?', {
-      layers: "gaul:Industrial",
+      layers: "gaul:Industrial_pl",
       transparent: true,
       format: 'image/png'
     }, {
@@ -437,9 +455,9 @@ Heron.options.map.layers = [
   ),
 
   new OpenLayers.Layer.WMS(
-    "Settlements",
+    "Miejscowości",
     'http://atlas.ihpan.edu.pl/geoserver/ows?', {
-      layers: "gaul:Settlements",
+      layers: "gaul:Settlements_pl",
       transparent: true,
       format: 'image/png'
     }, {
@@ -464,7 +482,7 @@ Heron.options.map.layers = [
   // aux data
 
   new OpenLayers.Layer.WMS(
-    "Settlements - 16th c. (HAP)",
+    "Miejscowości - XVI w. (AHP)",
     'http://atlas.ihpan.edu.pl/geoserver/ows?', {
       layers: "ihpan:pkt_zbiorcza_pri",
       transparent: true,
@@ -511,12 +529,12 @@ Heron.options.map.layers = [
 Ext.namespace("Heron.options.info");
 Heron.options.info.html =
   '<div class="hr-html-panel-body">' +
-  '<p>About the project</p>' +
-  '<p>Old maps into the digital! A digital edition of "Gaul/Raczyński" topographic map</p>' +
-  '<p><i>author: Tomasz Panecki <a href="mailto:tpanecki@uw.edu.pl">tpanecki@uw.edu.pl</a></i></p>' +
-  '<p><a href="https://github.com/Obywatelecki/gaul">GitHub repository</a></p>' +
-  '<p><a href="http://atlasfontium.pl/index.php?article=gaul">Zobacz główną stronę projektu</a></p>' +
-  '<p><a href="http://atlasfontium.pl/index.php?article=gaul&language=en">See project webpage</a></p>' +
+  '<p>Cyfrowa edycja mapy Gaula/Raczyńskiego (1807-1812)</p>' +
+  '<p><i>autorzy: </a></i></p>' +
+  '<i>Tomasz Panecki <a href="mailto:tpanecki@uw.edu.pl">tpanecki@uw.edu.pl</a></i>' +
+  '<p><i>Piotr Kann <a href="mailto:piotrkann@wp.pl">piotrkann@wp.pl</a></i></p>' +
+  '<p><a href="https://github.com/Obywatelecki/gaul">Repozytorium GitHub</a></p>' +
+  '<p><a href="http://atlasfontium.pl/index.php?article=gaul">Zobacz główną stronę projektu</a></p>'
   '</div>';
 
 Ext.namespace("Heron");
@@ -524,120 +542,120 @@ Ext.namespace("Heron.options");
 Ext.namespace("Heron.options.layertree");
 
 var treeTheme = [{
-    text: "Additional data",
+    text: "Dane dodatkowe",
     nodeType: 'hr_cascader',
     expanded: false,
     children: [
       {
         nodeType: "gx_layer",
-        layer: "Settlements - 16th c. (HAP)"
+        layer: "Miejscowości - XVI w. (AHP)"
       }
     ]
   },
   {
-    text: 'Gaul/Raczyński map data',
+    text: 'Dane kartograficzne',
     nodeType: 'hr_cascader',
     expanded: true,
     children: [
       {
         nodeType: "gx_layer",
-        layer: "Settlements"
+        layer: "Miejscowości"
       },
       {
         nodeType: "gx_layer",
-        layer: "Industrial and economic facilities"
+        layer: "Zakłady przemysłowe"
       },
       {
         nodeType: "gx_layer",
-        layer: "Buildings and constructions"
+        layer: "Budynki i konstrukcje"
       },
       {
         nodeType: "gx_layer",
-        layer: "Natural landscape names"
+        layer: "Nazwy fizjograficzne"
       },
       {
         nodeType: "gx_layer",
-        layer: "Roads"
+        layer: "Drogi"
       },
       {
         nodeType: "gx_layer",
-        layer: "Hydrography (area)"
+        layer: "Akweny"
       },
       {
         nodeType: "gx_layer",
-        layer: "Hydrography (lines)"
+        layer: "Rzeki"
       },
       {
         nodeType: "gx_layer",
-        layer: "Swamps"
+        layer: "Bagna"
       },
       {
         nodeType: "gx_layer",
-        layer: "Forests"
+        layer: "Lasy"
       },
       {
         nodeType: "gx_layer",
-        layer: "Districts"
+        layer: "Powiaty"
       }
     ]
   },
   {
-    text: 'BaseMaps',
+    text: 'Mapy podkładowe',
     expanded: false,
     children: [
       {
-        text: "Gaul/Raczyński map",
+        text: "Mapa Gaula/Raczyńskiego",
         expanded: false,
         children: [{
             nodeType: "gx_layer",
-            layer: "Mosaicked map"
+            layer: "Mapa połączona"
           },
           {
             nodeType: "gx_layer",
-            layer: "Mosaicked map (colored)"
+            layer: "Mapa połączona (kolorowa)"
           }
         ]
       },
       {
-        text: "Historical maps",
+        text: "Inne mapy dawne",
         expanded: false,
         children: [
           {
           nodeType: "gx_layer",
-          layer: "Prussian (c.a. 1800)"
+          layer: "Mapa pruska (ok. 1800)"
           },
           {
           nodeType: "gx_layer",
-          layer: "German (c.a. 1890)"
+          layer: "Mapa niemiecka (ok. 1890)"
           },
           {
             nodeType: "gx_layer",
-            layer: "Polish (c.a. 1930)"
+            layer: "Mapa polska (ok. 1930)"
           }
         ]
       },
       {
-        text: "Modern maps and data",
+        text: "Mapy i dane współczesne",
         expanded: false,
         children: [{
             nodeType: "gx_layer",
-            layer: "Topographic map"
+            layer: "Mapa topograficzna"
           },
           {
             nodeType: "gx_layer",
-            layer: "Satellite imagery"
+            layer: "Ortofotomapa"
           },
           {
             nodeType: "gx_layer",
-            layer: "National Register of Geographic Names"
+            layer: "Państwowy Rejestr Nazw Geograficznych"
           },
           {
             nodeType: "gx_layer",
-            layer: "National Register of Borders"
+            layer: "Państwowy Rejestr Granic"
           },
           {
             nodeType: "gx_layer",
-            layer: "Digital elevation model"
+            layer: "Numeryczny Model Terenu"
           }
         ]
       }
@@ -665,7 +683,7 @@ Heron.layout = {
           border: true,
           layerIcons: 'bylayertype',
           enableDD: false,
-          title: "Data",
+          title: "Cyfrowa edycja",
           contextMenu: [{
               xtype: 'hr_layernodemenulayerinfo'
             },
@@ -683,7 +701,7 @@ Heron.layout = {
           id: 'hr-info-west',
           html: Heron.options.info.html,
           preventBodyReset: true,
-          title: 'About the project'
+          title: 'O projekcie'
         }
       ]
     },
@@ -699,7 +717,7 @@ Heron.layout = {
       items: [{
         xtype: 'hr_mappanel',
         id: 'hr-map',
-        title: "<center>Old maps into digital! The digital edition of Gaul/Raczyński topographic map</center>",
+        title: "<center>Cyfrowa edycja mapy Gaula/Raczyńskiego (1807-1812)</center>",
         region: 'center',
         collapsible: false,
         border: false,

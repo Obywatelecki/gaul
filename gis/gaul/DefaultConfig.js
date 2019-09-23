@@ -65,6 +65,24 @@ Heron.options.map.layers = [
   //basemap historical data
 
   new OpenLayers.Layer.WMS(
+    "Prussian (c.a. 1800)",
+    'http://atlas.ihpan.edu.pl/geoserver/ows?', {
+      layers: "gaul:Gilly_150k_1803",
+      transparent: false,
+      format: 'image/png' // szybszy niz jpeg???
+    }, {
+      // maxResolution: 22,
+      singleTile: false,
+      opacity: 0.7,
+      isBaseLayer: false,
+      visibility: false,
+      noLegend: true,
+      // featureInfoFormat: 'application/vnd.ogc.gml',
+      transitionEffect: 'resize'
+    }
+  ),
+
+  new OpenLayers.Layer.WMS(
     "German (c.a. 1890)",
     "http://wms.hgis.cartomatic.pl/topo/2180/kdr", {
       layers: "kdr",
@@ -349,7 +367,7 @@ Heron.options.map.layers = [
   new OpenLayers.Layer.WMS(
     "Districts",
     'http://atlas.ihpan.edu.pl/geoserver/ows?', {
-      layers: "gaul:powiaty",
+      layers: "gaul:Districts",
       transparent: true,
       format: 'image/jpeg'
     }, {
@@ -511,12 +529,12 @@ Heron.options.map.layers = [
 Ext.namespace("Heron.options.info");
 Heron.options.info.html =
   '<div class="hr-html-panel-body">' +
-  '<p>About the project</p>' +
   '<p>Old maps into the digital! A digital edition of "Gaul/Raczyński" topographic map</p>' +
-  '<p><i>author: Tomasz Panecki <a href="mailto:tpanecki@uw.edu.pl">tpanecki@uw.edu.pl</a></i></p>' +
+  '<p><i>authors: </a></i></p>' +
+  '<i>Tomasz Panecki <a href="mailto:tpanecki@uw.edu.pl">tpanecki@uw.edu.pl</a></i>' +
+  '<p><i>Piotr Kann <a href="mailto:piotrkann@wp.pl">piotrkann@wp.pl</a></i></p>' +
   '<p><a href="https://github.com/Obywatelecki/gaul">GitHub repository</a></p>' +
-  '<p><a href="http://atlasfontium.pl/index.php?article=gaul">Zobacz główną stronę projektu</a></p>' +
-  '<p><a href="http://atlasfontium.pl/index.php?article=gaul&language=en">See project webpage</a></p>' +
+  '<p><a href="http://atlasfontium.pl/index.php?article=gaul&language=en">See project webpage</a></p>'
   '</div>';
 
 Ext.namespace("Heron");
