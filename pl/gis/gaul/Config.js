@@ -12,7 +12,7 @@ Heron.gaul.searchPanelConfig = {
           version: "1.1.0",
           url: "http://atlas.ihpan.edu.pl/geoserver/ows?",
           srsName: "EPSG:2180",
-          featureType: "miejscowosci",
+          featureType: "Settlements",
           // featurePrefix: "gaul"
         }),
         items: [{
